@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^10.14.1"
+		"firebase": "^10.14.1",
+		"firebase-admin": "^12.6.0"
 	}
 }
