@@ -43,7 +43,7 @@
       bio: '',
       links: [],
     });
-
+    
     await batch.commit();
 
     username = '';
@@ -59,7 +59,7 @@
     <p class="text-sm">(Usernames cannot be changed)</p>
     <a class="btn btn-accent btn-wide" href="/login/photo">Upload profile image</a>
   {:else}
-    <form on:submit|preventDefault={confirmUsername}>
+    <form on:submit|preventDefault={confirmUsername} class="w-[80%] max-w-96">
       <input
         type="text"
         placeholder="Username"
@@ -71,9 +71,9 @@
         class:input-success={isAvailable && isValid && !loading}
         autocapitalize="none"
       />
-      <div class="my-4 min-h-16 px-8 w-full">
+      <div class="my-4 min-h-16 w-full">
         {#if loading}
-          <p class="text-secondary">Checking availability of @{username.toLowerCase()}...</p>
+          <p class="text-secondary text-sm">Checking availability of @{username.toLowerCase()}...</p>
         {/if}
 
         {#if !isValid && isTouched}
