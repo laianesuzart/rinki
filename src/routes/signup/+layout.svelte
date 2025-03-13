@@ -6,15 +6,15 @@ import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
 <div class="grow">
   <nav class="flex justify-center my-6">
     <ul class="steps">
-      <a href="/login" class="step step-info">Sign In</a>
+      <span class="step step-info">Sign In</span>
       <a
-        href="/login/username"
+        href="/signup/username"
         class="step"
         class:step-info={$page.route.id?.match(/username|photo/g)}
       >
         Choose Username
       </a>
-      <a href="/login/photo" class="step" class:step-info={$page.route.id?.includes("photo")}>
+      <a href="/signup/photo" class="step" class:step-info={$page.route.id?.includes("photo")}>
         Upload Photo
       </a>
     </ul>

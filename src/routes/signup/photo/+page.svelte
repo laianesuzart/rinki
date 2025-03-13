@@ -64,6 +64,6 @@
     <a {href} class="btn btn-accent btn-wide">Finish</a>
     {:else}
     <p class="text-error">Choose your username first.</p>
-    <a href="/login/username" class="btn btn-warning btn-wide">Go back</a>
+    <a href="/signup/username" class="btn btn-warning btn-wide">Go back</a>
     {/if}
 </AuthGuard>
