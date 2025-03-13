@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="absolute inset-0 z-[3000] bg-base-200">
-  <main class="prose text-center mx-auto mt-12">
+  <main class="prose text-center mx-auto mt-12 px-4 pb-9">
     <img src={data.photoURL ?? '/avatar.jpg'} alt="User avatar" class="mx-auto rounded-full w-48 h-48 object-cover" />
     <h1 class="text-4xl text-secondary my-4">
       @{data.username}
