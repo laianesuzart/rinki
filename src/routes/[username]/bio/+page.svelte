@@ -37,8 +37,8 @@
     <p class="text-error py-4">{$page.form?.error ?? ""}</p>
 
     <div class="mt-8 text-center flex flex-wrap gap-2 justify-center">
-      <a href={`/${data.username}/edit`} class="btn btn-secondary btn-wide">Go back</a>
-      <button class="btn btn-primary btn-wide" disabled={loading}>
+      <a href={`/${data.username}/edit`} class="btn btn-primary btn-wide">Go back</a>
+      <button class="btn btn-secondary btn-wide" disabled={loading}>
           <span class="loading loading-spinner" class:hidden={!loading}></span>
         Save
       </button>
