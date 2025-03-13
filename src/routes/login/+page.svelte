@@ -1,6 +1,7 @@
 <script lang="ts">
   import { auth, user, userData } from '$lib/firebase';
   import { goto } from "$app/navigation";
+  import { tick } from 'svelte';
 
   import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
@@ -18,9 +19,10 @@
       body: JSON.stringify({ idToken }),
     });
 
+    await tick();
+
     const unsubscribe = userData.subscribe(async (data) => {
       if (data) {
-        console.log(data)
         unsubscribe();
         await goto(`/${data.username}/edit`);
       }
