@@ -18,11 +18,13 @@
 
   const formData = writable({...formDefaults});
 
-  let showForm = false;
+  let editing = false;
+  let loading = false;
 
   $: urlIsValid = $formData.url.match(/^(ftp|http|https):\/\/[^ "]+$/);
   $: titleIsValid = $formData.title.length < 20 && $formData.title.length > 0;
   $: formIsValid = urlIsValid && titleIsValid;
+  $: showForm = !loading && editing;
 
   function sortList(e: CustomEvent) {
     const newList = e.detail;
@@ -31,6 +33,7 @@
   }
 
   async function addLink(e: SubmitEvent) {
+    loading = true;
     const userRef = doc(db, 'users', $user!.uid);
 
     await updateDoc(userRef, {
@@ -42,7 +45,8 @@
 
     formData.set({...formDefaults});
 
-    showForm = false;
+    loading = false;
+    editing = false;
   }
 
   async function deleteLink(item: any) {
@@ -54,7 +58,7 @@
 
   function cancelLink() {
     formData.set({...formDefaults});
-    showForm = false;
+    editing = false;
   }
 
   async function toggleProfileStatus() {
@@ -79,7 +83,7 @@
   }
 </script>
 
-<main class="grow max-w-xl mx-auto">
+<main class="grow max-w-xl mx-auto pb-10">
   {#if $userData?.username == $page.params.username}
     <h2 class="mx-2 text-2xl font-bold mt-8 mb-4 text-center">Edit your Profile</h2>
 
@@ -147,9 +151,14 @@
         </button>
       </div>
     </SortableList>
-    {#if !showForm}
+    {#if loading}
+    <div class="text-center py-6">
+      <span class="loading loading-dots loading-lg text-info"></span>
+    </div>
+    {/if}
+    {#if !editing}
       <button
-        on:click={() => (showForm = true)}
+        on:click={() => (editing = true)}
         class="btn btn-outline btn-info block mx-auto my-4"
       >
         Add a Link
